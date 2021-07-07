@@ -32,7 +32,7 @@ def generate_token():
         https://example.com/?deployment=deployment_1
     """
     deployment_id = request.args.get('deployment') or abort(400)
-    master_key = deployment_key_map.get(deployment_id) or abort(400)
+    master_key = deployment_key_map.get(deployment_id) or abort(404)
 
     token = jwt.encode({}, master_key, algorithm='HS256')
 
